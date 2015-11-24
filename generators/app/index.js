@@ -16,6 +16,11 @@ module.exports = generators.Base.extend({
             defaults: false
         });
         this.option('skip-install');
+        this.option('ignore-cdn', {
+            desc: 'Ignore CDN, using the local fallback',
+            type: Boolean,
+            defaults: false
+        });
 
         this.config.save();
     },
@@ -32,10 +37,12 @@ module.exports = generators.Base.extend({
         this.prompt(require('./prompts'), (answers) => {
             this.appName = answers.appName;
             this.style = answers.style;
+            this.jslibs = answers.jslibs;
 
             this.config.set('appName', this.appName);
             this.config.set('appPath', this.appPath);
             this.config.set('style', this.style);
+            this.config.set('jslibs', this.jslibs);
             this.config.save();
 
             done();
@@ -48,31 +55,47 @@ module.exports = generators.Base.extend({
             author: {
                 name: child_process.execSync('git config user.name').toString().trim(),
                 email: child_process.execSync('git config user.email').toString().trim()
-            },
-            devDependencies: {}
+            }
         }
     },
 
     _generatePackage: function() {
-        for (let pkg of config.style.choices[this.style].packages) {
-            this.context.devDependencies[pkg.name] = pkg.version;
-        }
+        let settings = this.fs.readJSON(this.templatePath('package.json'));
 
-        let settings = _.extend(this.fs.readJSON(this.templatePath('package.json')), this.context);
+        _.extend(settings.devDependencies, config.style.choices[this.style].packages);
 
-        this.fs.writeJSON(this.destinationPath('package.json'), settings);
+        this.fs.writeJSON(this.destinationPath('package.json'), _.extend(settings, this.context));
     },
 
     _generateBower: function() {
-        this.fs.copyTpl(this.templatePath('bower.json'), this.destinationPath('bower.json'), this.context);
+        let settings = this.fs.readJSON(this.templatePath('bower.json'));
+
+        for (let jslib of this.jslibs) {
+            _.extend(settings.dependencies, config.jslibs.choices[jslib].packages);
+        }
+
+        this.fs.writeJSON(this.destinationPath('bower.json'), _.extend(settings, this.context));
+    },
+
+    _generateTsd: function() {
+        let settings = this.fs.readJSON(this.templatePath('tsd.json'));
+
+        for (let jslib of this.jslibs) {
+            _.extend(settings.installed, config.jslibs.choices[jslib].typings);
+        }
+
+        this.fs.writeJSON(this.destinationPath('tsd.json'), settings);
     },
 
     writing: function() {
         this._generatePackage();
         this._generateBower();
+        this._generateTsd();
 
         fs.readdir(this.sourceRoot(), (err, names) => {
             for(let name of names) {
+                this.log(name);
+
                 if (config.excludeFiles.indexOf(name) !== -1) {
                     continue;
                 }

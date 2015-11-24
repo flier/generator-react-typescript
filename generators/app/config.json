@@ -2,7 +2,10 @@
   "excludeFiles": [
     "package.json",
     "bower.json",
-    "node_modules"
+    "tsd.json",
+    "bower_components",
+    "node_modules",
+    "typings"
   ],
   "style": {
     "default": "css",
@@ -12,59 +15,85 @@
       },
       "sass": {
         "suffix": ".sass",
-        "packages": [
-          {
-            "name": "sass-loader",
-            "version": "^3.1.2"
-          },
-          {
-            "name": "node-sass",
-            "version": "^3.4.2"
-          }
-        ]
+        "packages": {
+          "sass-loader": "^3.1.2",
+          "node-sass": "^3.4.2"
+        }
       },
       "scss": {
         "suffix": ".scss",
-        "packages": [
-          {
-            "name": "sass-loader",
-            "version": "^3.1.2"
-          },
-          {
-            "name": "node-sass",
-            "version": "^3.4.2"
-          }
-        ]
+        "packages": {
+          "sass-loader": "^3.1.2",
+          "node-sass": "^3.4.2"
+        }
       },
       "less": {
         "suffix": ".less",
-        "packages": [
-          {
-            "name": "less-loader",
-            "version": "^2.2.1"
-          },
-          {
-            "name": "less",
-            "version": "^2.5.3"
-          }
-        ]
+        "packages": {
+          "less-loader": "^2.2.1",
+          "less": "^2.5.3"
+        }
       },
       "stylus": {
         "suffix": ".styl",
-        "packages": [
-          {
-            "name": "stylus-loader",
-            "version": "^1.4.2"
-          },
-          {
-            "name": "stylus",
-            "version": "^0.52.4"
-          },
-          {
-            "name": "nib",
-            "version": "^1.1.0"
+        "packages": {
+          "stylus-loader": "^1.4.2",
+          "stylus": "^0.52.4",
+          "nib": "^1.1.0"
+        }
+      }
+    }
+  },
+  "jslibs": {
+    "default": ["Modernizr", "React.js"],
+    "choices": {
+      "Modernizr": {
+        "packages": {
+          "modernizr": "~3.2.0"
+        }
+      },
+      "jQuery": {
+        "packages": {
+          "jquery": "~2.1.4"
+        },
+        "typings": {
+          "jquery/jquery.d.ts": {
+            "commit": "ba424f7ee39717d51c17699a09ac8df312a7e9a1"
           }
-        ]
+        }
+      },
+      "Underscore": {
+        "packages": {
+          "underscore": "~1.8.3",
+          "underscore.string": "~3.2.2"
+        },
+        "typings": {
+          "underscore/underscore.d.ts": {
+            "commit": "b2d17b5dad042e293e77d09f2a30d281325cb606"
+          },
+          "underscore.string/underscore.string.d.ts": {
+            "commit": "b2d17b5dad042e293e77d09f2a30d281325cb606"
+          }
+        }
+      },
+      "React.js": {
+        "packages": {
+          "react": "~0.14.3"
+        },
+        "typings": {
+          "react/react.d.ts": {
+            "commit": "ba424f7ee39717d51c17699a09ac8df312a7e9a1"
+          },
+          "react/react-dom.d.ts": {
+            "commit": "ba424f7ee39717d51c17699a09ac8df312a7e9a1"
+          }
+        }
+      },
+      "Material Design Lite": {
+        "packages": {
+          "material-design-lite": "~1.0.6",
+          "material-design-icons": "~2.1.1"
+        }
       }
     }
   }

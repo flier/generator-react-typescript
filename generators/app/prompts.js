@@ -18,4 +18,12 @@ module.exports = [
         default: config.style.default,
         store: true
     },
+    {
+        type: 'checkbox',
+        name: 'jslibs',
+        message: 'Which library you prefer to use?',
+        choices: Object.keys(config.jslibs.choices),
+        default: config.jslibs.default,
+        store: true
+    }
 ];
