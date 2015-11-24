@@ -1,0 +1,20 @@
+{
+  "name": "<%= name %>",
+  "author": {
+    "name": "<%= author.name %>",
+    "email": "<%= author.email %>"
+  },
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/components",
+    "test",
+    "tests"
+  ]
+}

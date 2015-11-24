@@ -1,0 +1,33 @@
+{
+  "name": "generator-react-typescript",
+  "version": "0.1.0",
+  "description": "Yeoman generator for using React.js with Webpack via TypeScript",
+  "files": [
+    "generators/app",
+    "generators/router"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "react",
+    "react.js",
+    "typescript",
+    "gulp",
+    "webpack"
+  ],
+  "author": {
+    "name": "Flier Lu",
+    "email": "flier.lu@gmail.com"
+  },
+  "main": "generators/app/index.js",
+  "dependencies": {
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.2.2",
+    "yeoman-generator": "^0.20.3",
+    "yeoman-welcome": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=4.0.0",
+    "iojs": ">=1.1.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,71 @@
+{
+  "excludeFiles": [
+    "package.json",
+    "bower.json",
+    "node_modules"
+  ],
+  "style": {
+    "default": "css",
+    "choices": {
+      "css": {
+        "suffix": ".css"
+      },
+      "sass": {
+        "suffix": ".sass",
+        "packages": [
+          {
+            "name": "sass-loader",
+            "version": "^3.1.2"
+          },
+          {
+            "name": "node-sass",
+            "version": "^3.4.2"
+          }
+        ]
+      },
+      "scss": {
+        "suffix": ".scss",
+        "packages": [
+          {
+            "name": "sass-loader",
+            "version": "^3.1.2"
+          },
+          {
+            "name": "node-sass",
+            "version": "^3.4.2"
+          }
+        ]
+      },
+      "less": {
+        "suffix": ".less",
+        "packages": [
+          {
+            "name": "less-loader",
+            "version": "^2.2.1"
+          },
+          {
+            "name": "less",
+            "version": "^2.5.3"
+          }
+        ]
+      },
+      "stylus": {
+        "suffix": ".styl",
+        "packages": [
+          {
+            "name": "stylus-loader",
+            "version": "^1.4.2"
+          },
+          {
+            "name": "stylus",
+            "version": "^0.52.4"
+          },
+          {
+            "name": "nib",
+            "version": "^1.1.0"
+          }
+        ]
+      }
+    }
+  }
+}
